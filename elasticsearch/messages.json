@@ -1,0 +1,15 @@
+{
+  "mappings": {
+    "dynamic": "strict",
+    "properties": {
+      "content": {
+        "type": "text",
+        "fields": { "sayt": { "type": "search_as_you_type" } }
+      },
+      "sender": { "type": "keyword" },
+      "creation_date": { "type": "date" },
+      "workspace_id": { "type": "keyword" },
+      "channel_id": { "type": "keyword" }
+    }
+  }
+}

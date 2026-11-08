@@ -13,8 +13,11 @@ class MessageRepositoryImpl implements MessageRepository {
   }
 
   @override
-  Future<List<Message>> search(String query) async {
-    final docs = await service.search(query);
+  Future<List<Message>> search(
+    String query, [
+    List<Map<String, dynamic>> filters = const [],
+  ]) async {
+    final docs = await service.search(query, filters);
     return docs.map(Message.fromJson).toList();
   }
 }

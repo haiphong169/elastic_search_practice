@@ -22,14 +22,24 @@ class ElasticSearchService {
     }
   }
 
-  Future<List<Map<String, dynamic>>> search(String query) async {
+  Future<List<Map<String, dynamic>>> search(
+    String query,
+    List<Map<String, dynamic>> filters,
+  ) async {
     final response = await http.post(
       Uri.parse('$esUrl/messages/_search'),
       headers: _headers,
       body: jsonEncode({
         "query": {
-          "match": {
-            "content": {"query": query},
+          "bool": {
+            "must": [
+              {
+                "match": {
+                  "content": {"query": query},
+                },
+              },
+            ],
+            "filter": filters,
           },
         },
       }),
